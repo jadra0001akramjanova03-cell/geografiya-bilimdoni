@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geografiya Bilimdoni</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="background-glow glow-one"></div>
+<div class="background-glow glow-two"></div>
+
+<header class="topbar">
+    <div class="logo">G<span>B</span></div>
+    <div class="top-title">GEOGRAFIYA BILIMDONI</div>
+    <div class="top-right">🌍 BILIM — KUCH!</div>
+</header>
+
+<main class="container">
+
+    <!-- BOSHLANISH -->
+    <section id="homeScreen" class="screen active">
+        <div class="hero-icon">🌍</div>
+        <p class="eyebrow">DUNYONI BILISH SARI QADAM</p>
+        <h1>GEOGRAFIYA <span>BILIMDONI</span></h1>
+        <p class="hero-text">
+            Dunyo bo‘ylab bilim sayohatiga tayyormisiz?
+            O‘z bilimingizni sinab ko‘ring va haqiqiy bilimdon ekaningizni isbotlang!
+        </p>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <span>🧠</span>
+                <b>Bilim</b>
+                <small>Turli geografik savollar</small>
+            </div>
+            <div class="feature-card">
+                <span>⏱️</span>
+                <b>Tezlik</b>
+                <small>Vaqt bilan bellashing</small>
+            </div>
+            <div class="feature-card">
+                <span>🏆</span>
+                <b>Reyting</b>
+                <small>Rekord o‘rnating</small>
+            </div>
+        </div>
+
+        <div class="start-box">
+            <label for="playerName">Ismingizni kiriting</label>
+            <input type="text" id="playerName" placeholder="Ismingiz..." maxlength="25">
+            <button class="main-btn" onclick="showLevels()">SAYOHATNI BOSHLASH <span>➜</span></button>
+        </div>
+
+        <p class="author">Loyiha muallifi: <b>Akramjonova Jadra Maratovna</b></p>
+    </section>
+
+    <!-- DARAJALAR -->
+    <section id="levelScreen" class="screen">
+        <button class="back-btn" onclick="goHome()">← Bosh sahifa</button>
+        <p class="eyebrow">BILIMINGIZNI SINAB KO‘RING</p>
+        <h2>Qiyinlik darajasini tanlang</h2>
+        <p class="muted" id="welcomeText"></p>
+
+        <div class="level-grid">
+            <button class="level-card" onclick="startGame('easy')">
+                <span>🌱</span>
+                <h3>Oson</h3>
+                <p>Geografiya asoslari</p>
+                <small>Yangi boshlovchilar uchun</small>
+            </button>
+
+            <button class="level-card" onclick="startGame('medium')">
+                <span>🧭</span>
+                <h3>O‘rta</h3>
+                <p>Geografik bilimlar</p>
+                <small>Bilimingizni kengaytiring</small>
+            </button>
+
+            <button class="level-card" onclick="startGame('hard')">
+                <span>🔥</span>
+                <h3>Qiyin</h3>
+                <p>Haqiqiy bilimdonlar</p>
+                <small>O‘zingizni sinab ko‘ring</small>
+            </button>
+        </div>
+
+        <button class="secondary-btn" onclick="showRanking()">🏆 Natijalar jadvali</button>
+    </section>
+
+    <!-- O‘YIN -->
+    <section id="gameScreen" class="screen">
+        <div class="game-top">
+            <button class="back-btn" onclick="confirmExit()">✕ Chiqish</button>
+            <div class="level-label" id="levelLabel">O‘RTA DARAJA</div>
+        </div>
+
+        <div class="stats-row">
+            <div class="stat-box">
+                <small>SAVOL</small>
+                <b id="questionNumber">1/10</b>
+            </div>
+            <div class="stat-box">
+                <small>TO‘PLANGAN BALL</small>
+                <b id="score">0</b>
+            </div>
+            <div class="stat-box timer-box" id="timerBox">
+                <small>VAQT</small>
+                <b id="timer">20</b>
+            </div>
+        </div>
+
+        <div class="progress-track">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-category" id="questionCategory">QIT’ALAR</div>
+            <h2 id="questionText">Savol yuklanmoqda...</h2>
+            <div class="answers" id="answers"></div>
+            <div id="feedback" class="feedback"></div>
+            <button id="nextBtn" class="main-btn next-btn" onclick="nextQuestion()">
+                KEYINGI SAVOL ➜
+            </button>
+        </div>
+
+        <p class="question-note">Har bir savolga faqat bitta javob tanlang.</p>
+    </section>
+
+    <!-- NATIJA -->
+    <section id="resultScreen" class="screen">
+        <div class="result-icon" id="resultIcon">🏆</div>
+        <p class="eyebrow">SAYOHAT YAKUNLANDI</p>
+        <h2 id="resultTitle">Ajoyib natija!</h2>
+        <p class="muted" id="resultName"></p>
+
+        <div class="final-score">
+            <small>SIZNING NATIJANGIZ</small>
+            <div><span id="finalScore">0</span><small> ball</small></div>
+        </div>
+
+        <div class="result-grid">
+            <div><b id="correctCount">0</b><small>To‘g‘ri</small></div>
+            <div><b id="wrongCount">0</b><small>Noto‘g‘ri</small></div>
+            <div><b id="percent">0%</b><small>Natija</small></div>
+        </div>
+
+        <button class="main-btn" onclick="showLevels()">YANA O‘YNASH ↻</button>
+        <button class="secondary-btn" onclick="showRanking()">🏆 Reyting jadvali</button>
+        <button class="text-btn" onclick="goHome()">Bosh sahifaga qaytish</button>
+    </section>
+
+    <!-- REYTING -->
+    <section id="rankingScreen" class="screen">
+        <button class="back-btn" onclick="showLevels()">← Orqaga</button>
+        <p class="eyebrow">ENG FAOL ISHTIROKCHILAR</p>
+        <h2>🏆 Bilimdonlar reytingi</h2>
+        <div id="rankingList" class="ranking-list"></div>
+        <button class="secondary-btn" onclick="clearRanking()">Reytingni tozalash</button>
+    </section>
+
+</main>
+
+<footer>
+    <span>GEOGRAFIYA BILIMDONI</span>
+    <p>Bilim bilan dunyoni kashf eting!</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
